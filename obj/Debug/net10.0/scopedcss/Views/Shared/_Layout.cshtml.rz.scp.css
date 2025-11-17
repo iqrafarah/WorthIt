@@ -1,0 +1,46 @@
+a.navbar-brand[b-5lr8xdgq9y] {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+a[b-5lr8xdgq9y] {
+  color: var(--foreground-color);
+}
+
+.btn-primary[b-5lr8xdgq9y] {
+  color: #fff;
+  background-color: var(--primary);
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active[b-5lr8xdgq9y],
+.nav-pills .show > .nav-link[b-5lr8xdgq9y] {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.border-top[b-5lr8xdgq9y] {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom[b-5lr8xdgq9y] {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow[b-5lr8xdgq9y] {
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+}
+
+button.accept-policy[b-5lr8xdgq9y] {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+.footer[b-5lr8xdgq9y] {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px;
+}

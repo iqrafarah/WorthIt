@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Expenses";
+}
+
+@model List<WorthIt.Models.Expense>
+
+
+<div class="text-center">
+    <div class="expenses-summary">
+        <span class="text-foreground-color"> Spent this month</span>
+        <h1 class="display-4 price-title price my-3">$ - 765.00</h1>
+    </div>
+
+
+    @* list *@
+    <section class=" expenses-list">
+        @foreach (var item in Model)
+        {
+            @await Html.PartialAsync("_ExpenseItem", item)
+        }
+    </section>
+</div>

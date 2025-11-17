@@ -1,0 +1,27 @@
+@section Styles {
+    <link rel="stylesheet" href="~/css/expenses.css" />
+}
+
+@model WorthIt.Models.Expense
+
+
+<div class="expense-item">
+    <div class="expense-header d-flex justify-content-between align-items-center my-4">
+        <span class="expense-title">@Model.Date.ToString("dddd, dd MMMM yyyy")</span>
+        <span class="expense-monthly-amount">$-@((float)Model.Amount)</span>
+    </div>
+
+    <div class="expense-item d-flex justify-content-between align-items-center mb-4">
+        <div class="d-flex align-items-center gap-3">
+            <div
+                class="expense-icon bg-primary  d-flex flex-column align-items-center gap-y-2 text-black rounded-circle">
+                @Model.CategoryIcon
+            </div>
+            <div class="d-flex flex-column">
+                <span class="expense-name text-black text-500 text-start">@Model.Name</span>
+                <span class="expense-date">@Model.Date.ToString("hh:mm tt")</span>
+            </div>
+        </div>
+        <div class="expense-amount price">-@Model.Amount$</div>
+    </div>
+</div>
