@@ -38,6 +38,7 @@
             <!-- hidden inputs that will be filled by JS -->
             <input type="hidden" name="CategoryName" id="CategoryName" />
             <input type="hidden" name="CategoryIcon" id="CategoryIcon" />
+            <input type="hidden" name="categoryId" id="categoryId" />
 
             <div class="mt-4 d-flex justify-content-center">
                 <a asp-action="Index" class="btn btn-cancel mx-2">Cancel</a>
@@ -55,21 +56,21 @@
         <div class="row text-center g-3">
 
             <div class="col-4">
-                <button type="button" class="category-option" data-name="Rent" data-icon="🏠">
+                <button type="button" class="category-option" data-name="Rent" data-icon="🏠" data-id="1">
                     <div class="category-icon">🏠</div>
                     <div class="small mt-1">Rent</div>
                 </button>
             </div>
 
             <div class="col-4">
-                <button type="button" class="category-option" data-name="Health" data-icon="💊">
+                <button type="button" class="category-option" data-name="Health" data-icon="💊" data-id="2">
                     <div class="category-icon">💊</div>
                     <div class="small mt-1">Health</div>
                 </button>
             </div>
 
             <div class="col-4">
-                <button type="button" class="category-option" data-name="Food" data-icon="🍕">
+                <button type="button" class="category-option" data-name="Food" data-icon="🍕" data-id="3">
                     <div class="category-icon">🍕</div>
                     <div class="small mt-1">Food</div>
                 </button>
@@ -78,9 +79,3 @@
         </div>
     </div>
 </div>
-
-@section Scripts {
-    <script>
-
-    </script>
-}

@@ -94,7 +94,6 @@
 /Users/iqra/Desktop/Projects/WorthIt/obj/Debug/net10.0/scopedcss/Views/Expenses/Index.cshtml.rz.scp.css
 /Users/iqra/Desktop/Projects/WorthIt/obj/Debug/net10.0/compressed/o4fdy4vigw-{0}-per1vr3p1s-per1vr3p1s.gz
 /Users/iqra/Desktop/Projects/WorthIt/obj/Debug/net10.0/compressed/iseo7r47u3-{0}-per1vr3p1s-per1vr3p1s.gz
-/Users/iqra/Desktop/Projects/WorthIt/obj/Debug/net10.0/compressed/xw3qoyyvjb-{0}-3r8b2a0bt1-3r8b2a0bt1.gz
 /Users/iqra/Desktop/Projects/WorthIt/obj/Debug/net10.0/WorthIt.csproj.AssemblyReference.cache
 /Users/iqra/Desktop/Projects/WorthIt/bin/Debug/net10.0/Humanizer.dll
 /Users/iqra/Desktop/Projects/WorthIt/bin/Debug/net10.0/Microsoft.Build.dll
@@ -224,4 +223,5 @@
 /Users/iqra/Desktop/Projects/WorthIt/bin/Debug/net10.0/runtimes/win/lib/net9.0/System.Windows.Extensions.dll
 /Users/iqra/Desktop/Projects/WorthIt/obj/Debug/net10.0/WorthIt.csproj.Up2Date
 /Users/iqra/Desktop/Projects/WorthIt/obj/Debug/net10.0/WorthIt.sourcelink.json
-/Users/iqra/Desktop/Projects/WorthIt/obj/Debug/net10.0/compressed/qjkk7kmbjd-{0}-ou80vtp7sf-ou80vtp7sf.gz
+/Users/iqra/Desktop/Projects/WorthIt/obj/Debug/net10.0/compressed/qjkk7kmbjd-{0}-ksx7lnfhxf-ksx7lnfhxf.gz
+/Users/iqra/Desktop/Projects/WorthIt/obj/Debug/net10.0/compressed/xw3qoyyvjb-{0}-tphkwukj1k-tphkwukj1k.gz

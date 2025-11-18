@@ -42,11 +42,15 @@ span {
   font-weight: 500;
   border-radius: 50px;
   transition: transform 0.18s ease, background-color 0.18s ease;
-  .btn:hover {
-    background-color: var(--primary-hover);
-    color: #000;
-    transform: scale(1.04);
-  }
+}
+.btn:hover,
+.btn:focus,
+.btn:active {
+  background-color: var(--primary-hover) !important;
+  color: #000 !important;
+  transform: scale(1.04);
+  border: none !important;
+  box-shadow: none !important;
   transition: transform 0.2s;
 }
 

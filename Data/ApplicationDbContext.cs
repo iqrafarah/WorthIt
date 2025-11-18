@@ -9,5 +9,6 @@ namespace WorthIt.Data
             : base(options) { }
 
         public DbSet<Expense> Expenses { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }

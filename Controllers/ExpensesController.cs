@@ -22,7 +22,12 @@ namespace WorthIt.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddExpense(decimal amount, string CategoryIcon, string CategoryName)
+        public IActionResult AddExpense(
+            decimal amount,
+            int categoryId,
+            string CategoryIcon,
+            string CategoryName
+        )
         {
             if (amount <= 0)
             {
@@ -35,11 +40,18 @@ namespace WorthIt.Controllers
             {
                 Amount = amount,
                 Date = DateTime.Now,
-                CategoryIcon = CategoryIcon,
+                CategoryId = categoryId,
+            };
+
+            var category = new Category
+            {
                 CategoryName = CategoryName,
+                CategoryIcon = CategoryIcon,
             };
 
             _context.Expenses.Add(expense);
+            _context.Categories.Add(category);
+
             _context.SaveChanges();
 
             return RedirectToAction(nameof(Index));
@@ -47,9 +59,18 @@ namespace WorthIt.Controllers
 
         public IActionResult Index()
         {
-            var expenses = _context.Expenses.OrderByDescending(x => x.Date).ToList();
+            var expenses = _context.Expenses.ToList();
+            var categories = _context.Categories.ToList();
 
-            return View(expenses);
+            var viewModelList = expenses
+                .Select(expense => new ExpenseItemViewModel
+                {
+                    Expense = expense,
+                    Category = categories.FirstOrDefault(c => c.Id == expense.CategoryId),
+                })
+                .ToList();
+
+            return View(viewModelList);
         }
     }
 }

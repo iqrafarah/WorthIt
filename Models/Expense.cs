@@ -5,9 +5,7 @@ namespace WorthIt.Models
         public int Id { get; set; }
 
         public int UserId { get; set; }
-        public string CategoryIcon { get; set; } = "";
-
-        public string CategoryName { get; set; } = "";
+        public int CategoryId { get; set; }
         public string Name { get; set; } = "";
         public decimal Amount { get; set; }
         public DateTime Date { get; set; }

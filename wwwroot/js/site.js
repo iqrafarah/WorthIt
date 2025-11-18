@@ -5,6 +5,7 @@
             const categoryIcon = document.getElementById("category-icon-placeholder");
             const inputName = document.getElementById("CategoryName");
             const inputIcon = document.getElementById("CategoryIcon");
+            const categoryId = document.getElementById("categoryId");
 
             if (!openModalBtn || !overlay) return;
 
@@ -27,13 +28,16 @@
                 btn.addEventListener("click", function () {
                     const name = this.dataset.name;
                     const icon = this.dataset.icon;
+                    const id = this.dataset.id;
+
+                    console.log(name, icon, id);
 
                     categoryIcon.style.display = "none";
                     categoryText.textContent = icon + " " + name;
                     inputName.value = name;
                     inputIcon.value = icon;
-
-
+                    categoryId.value = id;
+                    
                     overlay.style.display = "none";
                 });
             });

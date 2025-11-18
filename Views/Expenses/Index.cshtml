@@ -1,27 +1,53 @@
-﻿@{
+﻿@model List<WorthIt.Models.ExpenseItemViewModel>
+
+@{
     ViewData["Title"] = "Expenses";
 }
-
-@model List<WorthIt.Models.Expense>
-
 
 <div class="text-center">
     <div class="expenses-summary">
         <span class="text-foreground-color"> Spent this month</span>
-        <h1 class="display-4 price-title price my-3">$765</h1>
+        <h1 class="display-4 price-title price my-3">
+            @{
+                decimal monthTotal = 0m;
+                if (Model != null && Model.Any())
+                {
+                    monthTotal = Model
+                    .Where(e => e.Expense.Date.Month == DateTime.Now.Month && e.Expense.Date.Year == DateTime.Now.Year)
+                    .Sum(e => e.Expense.Amount);
+                }
+            }
+            $@((float)monthTotal)
+        </h1>
     </div>
 
-
-    @* list *@
-    <section class=" expenses-list">
+    <section class="expenses-list">
         <div class="expense-header d-flex justify-content-between align-items-center my-4">
             <span class="expense-title">Today</span>
-            <span class="expense-monthly-amount"> -55$</span>
+            <span class="expense-monthly-amount">
+                @{
+                    decimal day = 0m;
+                    if (Model != null && Model.Any())
+                    {
+                        day = Model
+                        .Where(e => e.Expense.Date.Date == DateTime.Now.Date)
+                        .Sum(e => e.Expense.Amount);
+                    }
+                }
+                $@((float)day)
+            </span>
         </div>
 
-        @foreach (var item in Model)
+        @if (Model != null && Model.Any())
         {
-            @await Html.PartialAsync("_ExpenseItem", item)
+            @foreach (var viewModel in Model)
+            {
+                @await Html.PartialAsync("_ExpenseItem", viewModel)
+            }
+        }
+        else
+        {
+            <p class="text-center text-muted">No expenses recorded yet.</p>
         }
     </section>
 </div>
