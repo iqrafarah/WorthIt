@@ -22,7 +22,7 @@ namespace WorthIt.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddExpense(decimal amount)
+        public IActionResult AddExpense(decimal amount, string CategoryIcon, string CategoryName)
         {
             if (amount <= 0)
             {
@@ -31,7 +31,13 @@ namespace WorthIt.Controllers
                 return View();
             }
 
-            var expense = new Expense { Amount = amount, Date = DateTime.Now };
+            var expense = new Expense
+            {
+                Amount = amount,
+                Date = DateTime.Now,
+                CategoryIcon = CategoryIcon,
+                CategoryName = CategoryName,
+            };
 
             _context.Expenses.Add(expense);
             _context.SaveChanges();

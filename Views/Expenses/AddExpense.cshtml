@@ -3,9 +3,10 @@
     ViewData["HideHeader"] = true;
 }
 
+
 <div class="py-4 d-flex flex-column justify-content-center align-items-center add-expense-container">
     <div class="text-center">
-        <span class="small">Today at Thu Mar 07 2025</span>
+        <span class="small">@DateTime.Now.ToString("dddd, MMMM dd yyyy")</span>
 
         <form asp-action="AddExpense" method="post" class="d-flex flex-column align-items-center mt-3">
 
@@ -15,17 +16,21 @@
 
             <hr class="w-100 my-4" />
 
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" width="24"
+                height="24" stroke="#9B9B9B" class="size-6 mb-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25 12 21m0 0-3.75-3.75M12 21V3" />
+            </svg>
+
             <!-- select tag row -->
             <a href="javascript:void(0)" type="button" id="open-category-modal"
                 class=" d-flex align-items-center gap-2 select-tag-button">
-                <span class="me-2">
+                <span class="me-2" id="category-icon-placeholder">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="#000" class="size-6" width="20" height="20">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" />
                     </svg>
-
                 </span>
                 <span id="selected-category-text" class="text-muted">Select your tag</span>
             </a>
@@ -45,7 +50,7 @@
 <!-- CATEGORY MODAL -->
 <div class="category-overlay d-none" id="category-modal-overlay">
     <div class="category-modal">
-        <h6 class="text-center mb-3">Category</h6>
+        <h6 class="text-center mb-5 text-normal">Category</h6>
 
         <div class="row text-center g-3">
 
@@ -70,47 +75,12 @@
                 </button>
             </div>
 
-            <!-- add more categories: Clothes, Gift, Vacation, Coffee, Education, Groceries, ... -->
         </div>
     </div>
 </div>
 
 @section Scripts {
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const openModalBtn = document.getElementById("open-category-modal");
-            const overlay = document.getElementById("category-modal-overlay");
-            const categoryText = document.getElementById("selected-category-text");
-            const inputName = document.getElementById("CategoryName");
-            const inputIcon = document.getElementById("CategoryIcon");
 
-            if (!openModalBtn || !overlay) return;
-
-            // open modal
-            openModalBtn.addEventListener("click", function () {
-                overlay.classList.remove("d-none");
-            });
-
-            // close when clicking the dark background
-            overlay.addEventListener("click", function (e) {
-                if (e.target === overlay) {
-                    overlay.style.display = "none";
-                }
-            });
-
-            // handle category click
-            document.querySelectorAll(".category-option").forEach(btn => {
-                btn.addEventListener("click", function () {
-                    const name = this.dataset.name;
-                    const icon = this.dataset.icon;
-
-                    categoryText.textContent = name;
-                    inputName.value = name;
-                    inputIcon.value = icon;
-
-                    overlay.style.display = "none";
-                });
-            });
-        });
     </script>
 }
