@@ -91,9 +91,6 @@
 /Users/iqra/Desktop/Projects/WorthIt/obj/Debug/net10.0/WorthIt.genruntimeconfig.cache
 /Users/iqra/Desktop/Projects/WorthIt/obj/Debug/net10.0/ref/WorthIt.dll
 /Users/iqra/Desktop/Projects/WorthIt/obj/Debug/net10.0/compressed/9d3p2bdzun-{0}-slx5ydmtn6-slx5ydmtn6.gz
-/Users/iqra/Desktop/Projects/WorthIt/obj/Debug/net10.0/scopedcss/Views/Expenses/Index.cshtml.rz.scp.css
-/Users/iqra/Desktop/Projects/WorthIt/obj/Debug/net10.0/compressed/o4fdy4vigw-{0}-per1vr3p1s-per1vr3p1s.gz
-/Users/iqra/Desktop/Projects/WorthIt/obj/Debug/net10.0/compressed/iseo7r47u3-{0}-per1vr3p1s-per1vr3p1s.gz
 /Users/iqra/Desktop/Projects/WorthIt/obj/Debug/net10.0/WorthIt.csproj.AssemblyReference.cache
 /Users/iqra/Desktop/Projects/WorthIt/bin/Debug/net10.0/Humanizer.dll
 /Users/iqra/Desktop/Projects/WorthIt/bin/Debug/net10.0/Microsoft.Build.dll
@@ -223,5 +220,7 @@
 /Users/iqra/Desktop/Projects/WorthIt/bin/Debug/net10.0/runtimes/win/lib/net9.0/System.Windows.Extensions.dll
 /Users/iqra/Desktop/Projects/WorthIt/obj/Debug/net10.0/WorthIt.csproj.Up2Date
 /Users/iqra/Desktop/Projects/WorthIt/obj/Debug/net10.0/WorthIt.sourcelink.json
-/Users/iqra/Desktop/Projects/WorthIt/obj/Debug/net10.0/compressed/qjkk7kmbjd-{0}-93d6kmot4l-93d6kmot4l.gz
-/Users/iqra/Desktop/Projects/WorthIt/obj/Debug/net10.0/compressed/xw3qoyyvjb-{0}-0pdgrk0d5j-0pdgrk0d5j.gz
+/Users/iqra/Desktop/Projects/WorthIt/obj/Debug/net10.0/compressed/xw3qoyyvjb-{0}-97eb1o6hui-97eb1o6hui.gz
+/Users/iqra/Desktop/Projects/WorthIt/obj/Debug/net10.0/compressed/o4fdy4vigw-{0}-rjw88p60et-rjw88p60et.gz
+/Users/iqra/Desktop/Projects/WorthIt/obj/Debug/net10.0/compressed/iseo7r47u3-{0}-rjw88p60et-rjw88p60et.gz
+/Users/iqra/Desktop/Projects/WorthIt/obj/Debug/net10.0/compressed/qjkk7kmbjd-{0}-vtndvwho2z-vtndvwho2z.gz

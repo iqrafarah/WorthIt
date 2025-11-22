@@ -100,13 +100,14 @@ span {
 
 .price {
   color: #000 !important;
+  font-weight: 600;
 }
 
 /* epxense item styles */
 .expense-icon {
-  width: 65px;
+  width: 50px;
   background-color: var(--light-gray) !important;
-  height: 65px;
+  height: 50px;
   display: flex !important;
   justify-content: center;
 }
@@ -169,6 +170,8 @@ span {
   padding: 3px 10px;
   background-color: var(--primary);
   border-radius: 5px;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .category-overlay {
@@ -228,4 +231,17 @@ span {
 
 #close-add-category-modal {
   cursor: pointer;
+}
+
+.analytics-summary .price-amount {
+  color: #ee4b2b !important;
+}
+
+.analytics-item {
+  background-color: #f9fafc;
+  padding: 5px 15px;
+}
+
+.analytics-item .expense-icon {
+  background-color: var(--primary) !important;
 }

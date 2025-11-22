@@ -1,0 +1,39 @@
+<!-- CATEGORY MODAL -->
+<div class="category-overlay d-none" id="category-modal-overlay">
+    <div class="category-modal">
+        <h6 class="text-center mb-5 text-normal">Category</h6>
+
+
+
+
+        <div class="row text-center g-3 bg-white">
+
+            <div class="col-3">
+                <button type="button" id="open-add-category-modal"
+                    class="m-auto d-flex flex-column align-items-center gap-y-2 bg-transparent text-black border rounded-circle px-3 py-3">
+                    <div class="category-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="#000" width="20" height="20" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+
+                    </div>
+                </button>
+            </div>
+            </button>
+
+            @foreach (var category in Model)
+            {
+
+                <div class="col-3">
+                    <button type="button" class="category-option" data-name="@category.CategoryName"
+                        data-icon="@category.CategoryIcon" data-id="@category.Id">
+                        <div class="category-icon">@category.CategoryIcon</div>
+                        <div class="small mt-1">@category.CategoryName</div>
+                    </button>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>

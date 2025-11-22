@@ -1,0 +1,32 @@
+<!-- Add CATEGORY MODAL -->
+<div class="category-overlay d-none bg-white" id="add-category-modal-overlay">
+    <div class="container category-modal">
+        <div class="row mb-5 ">
+
+            <div class="col-4">
+                <svg id="close-add-category-modal" xmlns="http://www.w3.org/2000/svg" fill="#000" width="20" height="20"
+                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+                </svg>
+            </div>
+
+            <div class="col-8">
+                <h6 class="text-start text-normal p-0 m-0">New category </h6>
+            </div>
+        </div>
+
+        <form asp-action="AddCategory" method="post" class="d-flex flex-column align-items-center mt-3">
+
+            <!-- category icon input -->
+            <input type="text" class="form-control text-center" id="new-category-icon" placeholder="🏠 (sticker)"
+                name="NewCategoryIcon" required />
+
+
+            <!-- category name input -->
+            <input type="text" class="form-control text-center" id="new-category-name" placeholder="Rent (name)"
+                name="NewCategoryName" required />
+
+            <button type="submit" class="btn btn-primary mx-2">Confirm</button>
+        </form>
+    </div>
+</div>

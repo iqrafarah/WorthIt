@@ -30,8 +30,36 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
+[/Users/iqra/Desktop/Projects/WorthIt/Views/Analytics/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQW5hbHl0aWNzL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/iqra/Desktop/Projects/WorthIt/Views/Analytics/_Graph.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQW5hbHl0aWNzL19HcmFwaC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/iqra/Desktop/Projects/WorthIt/Views/Changelogs/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2hhbmdlbG9ncy9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/iqra/Desktop/Projects/WorthIt/Views/Expenses/AddExpense.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRXhwZW5zZXMvQWRkRXhwZW5zZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/iqra/Desktop/Projects/WorthIt/Views/Expenses/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRXhwZW5zZXMvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/iqra/Desktop/Projects/WorthIt/Views/Expenses/_AddCategoryModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRXhwZW5zZXMvX0FkZENhdGVnb3J5TW9kYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/iqra/Desktop/Projects/WorthIt/Views/Expenses/_CategoryModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRXhwZW5zZXMvX0NhdGVnb3J5TW9kYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/iqra/Desktop/Projects/WorthIt/Views/Expenses/_ExpenseItem.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRXhwZW5zZXMvX0V4cGVuc2VJdGVtLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/iqra/Desktop/Projects/WorthIt/Views/Shared/Error.cshtml]
@@ -40,10 +68,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/iqra/Desktop/Projects/WorthIt/Views/Shared/_BottomNav.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19Cb3R0b21OYXYuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/iqra/Desktop/Projects/WorthIt/Views/Shared/_ExpenseItem.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19FeHBlbnNlSXRlbS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/iqra/Desktop/Projects/WorthIt/Views/Shared/_ValidationScriptsPartial.cshtml]
@@ -57,10 +81,6 @@ build_metadata.AdditionalFiles.CssScope =
 [/Users/iqra/Desktop/Projects/WorthIt/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/iqra/Desktop/Projects/WorthIt/Views/Expenses/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRXhwZW5zZXMvSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-p6ogy23ez8
 
 [/Users/iqra/Desktop/Projects/WorthIt/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
