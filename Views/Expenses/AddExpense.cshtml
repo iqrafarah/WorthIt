@@ -1,10 +1,25 @@
+@using WorthIt.Migrations
 @{
     ViewData["Title"] = "Add expense";
     ViewData["HideHeader"] = true;
 }
 
+@model List<WorthIt.Models.Category>
 
+
+
+@if (TempData["CategoryAddedMessage"] is string message)
+{
+    <div class="my-4 p-2 rounded-2 border shadow-sm small mb-3 d-flex align-items-center justify-content-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="#26bf7a" width="24" height="24" viewBox="0 0 640 640">
+            <path
+                d="M320 576C178.6 576 64 461.4 64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576zM438 209.7C427.3 201.9 412.3 204.3 404.5 215L285.1 379.2L233 327.1C223.6 317.7 208.4 317.7 199.1 327.1C189.8 336.5 189.7 351.7 199.1 361L271.1 433C276.1 438 282.9 440.5 289.9 440C296.9 439.5 303.3 435.9 307.4 430.2L443.3 243.2C451.1 232.5 448.7 217.5 438 209.7z" />
+        </svg>
+        @message
+    </div>
+}
 <div class="py-4 d-flex flex-column justify-content-center align-items-center add-expense-container">
+
     <div class="text-center">
         <span class="small">@DateTime.Now.ToString("dddd, MMMM dd yyyy")</span>
 
@@ -53,29 +68,70 @@
     <div class="category-modal">
         <h6 class="text-center mb-5 text-normal">Category</h6>
 
-        <div class="row text-center g-3">
 
-            <div class="col-4">
-                <button type="button" class="category-option" data-name="Rent" data-icon="🏠" data-id="1">
-                    <div class="category-icon">🏠</div>
-                    <div class="small mt-1">Rent</div>
+
+
+        <div class="row text-center g-3 bg-white">
+
+            <div class="col-3">
+                <button type="button" id="open-add-category-modal"
+                    class="m-auto d-flex flex-column align-items-center gap-y-2 bg-transparent text-black border rounded-circle px-3 py-3">
+                    <div class="category-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="#000" width="24" height="24" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+
+                    </div>
                 </button>
             </div>
+            </button>
 
-            <div class="col-4">
-                <button type="button" class="category-option" data-name="Health" data-icon="💊" data-id="2">
-                    <div class="category-icon">💊</div>
-                    <div class="small mt-1">Health</div>
-                </button>
-            </div>
+            @foreach (var category in Model)
+            {
 
-            <div class="col-4">
-                <button type="button" class="category-option" data-name="Food" data-icon="🍕" data-id="3">
-                    <div class="category-icon">🍕</div>
-                    <div class="small mt-1">Food</div>
-                </button>
-            </div>
+                <div class="col-3">
+                    <button type="button" class="category-option" data-name="@category.CategoryName"
+                        data-icon="@category.CategoryIcon" data-id="@category.Id">
+                        <div class="category-icon">@category.CategoryIcon</div>
+                        <div class="small mt-1">@category.CategoryName</div>
+                    </button>
+                </div>
 
+            }
         </div>
+    </div>
+</div>
+
+<!-- Add CATEGORY MODAL -->
+<div class="category-overlay d-none bg-white" id="add-category-modal-overlay">
+    <div class="container category-modal">
+        <div class="row mb-5 ">
+
+            <div class="col-4">
+                <svg id="close-add-category-modal" xmlns="http://www.w3.org/2000/svg" fill="#000" width="24" height="24"
+                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+                </svg>
+            </div>
+
+            <div class="col-8">
+                <h6 class="text-start text-normal p-0 m-0">New category </h6>
+            </div>
+        </div>
+
+        <form asp-action="AddCategory" method="post" class="d-flex flex-column align-items-center mt-3">
+
+            <!-- category icon input -->
+            <input type="text" class="form-control text-center" id="new-category-icon" placeholder="🏠 (sticker)"
+                name="NewCategoryIcon" required />
+
+
+            <!-- category name input -->
+            <input type="text" class="form-control text-center" id="new-category-name" placeholder="Rent (name)"
+                name="NewCategoryName" required />
+
+            <button type="submit" class="btn btn-primary mx-2">Confirm</button>
+        </form>
     </div>
 </div>

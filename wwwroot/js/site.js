@@ -12,6 +12,7 @@
             // open modal
             openModalBtn.addEventListener("click", function () {
                 overlay.classList.remove("d-none");
+                overlay.style.display = "flex";
             });
 
             // close when clicking the dark background
@@ -20,6 +21,7 @@
                     overlay.style.display = "none";
                 }
             });
+
 
             categoryIcon.style.display = "block";
 
@@ -37,8 +39,38 @@
                     inputName.value = name;
                     inputIcon.value = icon;
                     categoryId.value = id;
-                    
+
+                    console.log("Category selected:", name, icon, id);
+
                     overlay.style.display = "none";
                 });
             });
+
+
+            // add category modal
+            const openAddCategoryModalBtn = document.getElementById("open-add-category-modal");
+            const addCategoryOverlay = document.getElementById("add-category-modal-overlay");
+            const closeAddCategoryModalBtn = document.getElementById("close-add-category-modal");
+
+            if (openAddCategoryModalBtn && addCategoryOverlay) {
+                openAddCategoryModalBtn.addEventListener("click", function () {
+                    addCategoryOverlay.classList.remove("d-none");
+                    addCategoryOverlay.style.display = "flex";
+                });
+                
+                addCategoryOverlay.addEventListener("click", function (e) {
+                    if (e.target === addCategoryOverlay) {
+                        addCategoryOverlay.style.display = "none";
+                    }
+                });
+
+                if (closeAddCategoryModalBtn) {
+                    closeAddCategoryModalBtn.addEventListener("click", function () {
+                        addCategoryOverlay.style.display = "none";
+                    });
+                }   
+
+            }
+
+
         });

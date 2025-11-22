@@ -21,6 +21,17 @@ body {
   margin: auto;
   font-family: "Nunito", sans-serif;
   color: var(--foreground-color);
+  background-color: #f9fbfb;
+}
+
+.container {
+  background-color: white;
+  padding: 20px !important;
+}
+
+main {
+  background-color: #fff;
+  height: 100vh;
 }
 
 @media (min-width: 768px) {
@@ -104,7 +115,8 @@ span {
   min-height: 80vh;
 }
 
-.add-expense-container input {
+.add-expense-container input,
+#add-category-modal-overlay input {
   border: none;
   text-align: center;
   font-size: 4.5rem;
@@ -116,6 +128,15 @@ span {
   appearance: none;
 }
 
+#add-category-modal-overlay input {
+  font-size: 1rem;
+  font-weight: 400;
+  border-bottom: 1px solid var(--light-gray);
+  padding-bottom: 5;
+  width: fit-content;
+  border-radius: 0;
+  margin-bottom: 20px;
+}
 .add-expense-container input[type="number"]::-webkit-outer-spin-button,
 .add-expense-container input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -155,7 +176,8 @@ span {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 420px;
+  width: 100%;
+  max-width: 380px;
   background-color: #ffffff94;
   border-top: 1px solid #ddd;
   z-index: 1000;
@@ -194,9 +216,16 @@ span {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-  padding-bottom: 60px;
+  padding-bottom: 100px;
+  box-sizing: border-box;
 }
-
+.expenses-list .expense-item:not(:last-child) {
+  border-bottom: 1px solid var(--light-gray) !important;
+}
 .expenses-list::-webkit-scrollbar {
   display: none; /* Chrome, Safari */
+}
+
+#close-add-category-modal {
+  cursor: pointer;
 }

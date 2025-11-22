@@ -17,17 +17,15 @@ namespace WorthIt.Controllers
         public IActionResult AddExpense()
         {
             ViewData["HideHeader"] = true;
-            return View();
+
+            var categories = _context.Categories.ToList();
+
+            return View(categories);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddExpense(
-            decimal amount,
-            int categoryId,
-            string CategoryIcon,
-            string CategoryName
-        )
+        public IActionResult AddExpense(decimal amount, int categoryId)
         {
             if (amount <= 0)
             {
@@ -43,18 +41,27 @@ namespace WorthIt.Controllers
                 CategoryId = categoryId,
             };
 
-            var category = new Category
-            {
-                CategoryName = CategoryName,
-                CategoryIcon = CategoryIcon,
-            };
-
             _context.Expenses.Add(expense);
-            _context.Categories.Add(category);
-
             _context.SaveChanges();
 
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public IActionResult AddCategory(string NewCategoryIcon, string NewCategoryName)
+        {
+            var category = new Category
+            {
+                CategoryName = NewCategoryName,
+                CategoryIcon = NewCategoryIcon,
+            };
+
+            _context.Categories.Add(category);
+            _context.SaveChanges();
+
+            TempData["CategoryAddedMessage"] = "Category added successfully.";
+
+            return RedirectToAction(nameof(AddExpense));
         }
 
         public IActionResult Index()
