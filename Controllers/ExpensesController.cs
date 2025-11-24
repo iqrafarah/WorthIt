@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using WorthIt.Data;
 using WorthIt.Models;
@@ -31,7 +33,9 @@ namespace WorthIt.Controllers
             {
                 ModelState.AddModelError("", "Amount must be greater than zero.");
                 ViewData["HideHeader"] = true;
-                return View();
+
+                var categories = _context.Categories.ToList();
+                return View(categories);
             }
 
             var expense = new Expense
@@ -39,6 +43,7 @@ namespace WorthIt.Controllers
                 Amount = amount,
                 Date = DateTime.Now,
                 CategoryId = categoryId,
+                UserId = 1,
             };
 
             _context.Expenses.Add(expense);
@@ -68,11 +73,13 @@ namespace WorthIt.Controllers
         {
             var expenses = _context.Expenses.ToList();
             var categories = _context.Categories.ToList();
+            var users = _context.Users.ToList();
 
             var viewModelList = expenses
                 .Select(expense => new ExpenseItemViewModel
                 {
                     Expense = expense,
+                    User = users.FirstOrDefault(u => u.Id == expense.UserId),
                     Category = categories.FirstOrDefault(c => c.Id == expense.CategoryId),
                 })
                 .ToList();

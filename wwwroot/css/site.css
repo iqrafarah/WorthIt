@@ -42,9 +42,7 @@ main {
 a {
   text-decoration: none;
 }
-span {
-  color: var(--muted) !important;
-}
+
 .btn {
   background-color: var(--primary);
   border: none;
@@ -239,7 +237,7 @@ span {
 
 .analytics-item {
   background-color: #f9fafc;
-  padding: 5px 15px;
+  padding: 8px 15px;
 }
 
 .analytics-item .expense-icon {

@@ -17,7 +17,29 @@
             </div>
         </div>
         <div class="hour-cost">
-            2 hours
+            @{
+                string timeText = "";
+
+                if (Model.User != null && Model.User.HourlyWage > 0 && Model.Expense != null)
+                {
+                    decimal hours = Model.Expense.Amount / Model.User.HourlyWage;
+
+                    if (hours >= 1)
+                    {
+                        timeText = $"{hours:0.#}h";
+                    }
+                    else
+                    {
+                        var minutes = hours * 60;
+                        timeText = $"{minutes:0} min";
+                    }
+                }
+            }
+
+            @if (!string.IsNullOrEmpty(timeText))
+            {
+                <span title="Hours of work">@timeText</span>
+            }
         </div>
     </div>
 </div>

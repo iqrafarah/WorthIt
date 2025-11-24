@@ -1,3 +1,4 @@
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using WorthIt.Data;
 using WorthIt.Models;
@@ -16,13 +17,19 @@ namespace WorthIt.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var expenseItems = _context
-                .Expenses.Select(e => new ExpenseItemViewModel
+            var users = _context.Users.ToList();
+            var categories = _context.Categories.ToList();
+            var expenses = _context.Expenses.ToList();
+
+            var expenseItems = expenses
+                .Select(e => new ExpenseItemViewModel
                 {
                     Expense = e,
-                    Category = _context.Categories.FirstOrDefault(c => c.Id == e.CategoryId),
+                    User = users.FirstOrDefault(u => u.Id == e.UserId),
+                    Category = categories.FirstOrDefault(c => c.Id == e.CategoryId),
                 })
                 .ToList();
+
             return View(expenseItems);
         }
     }
