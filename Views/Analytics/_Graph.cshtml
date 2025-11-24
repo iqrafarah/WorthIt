@@ -1,0 +1,82 @@
+@using System.Text.Json
+@model List<WorthIt.Models.ExpenseItemViewModel>
+
+@{
+    var today = DateTime.Today;
+
+    // Take only this month’s expenses
+    var monthExpenses = Model?
+    .Where(e => e.Expense != null &&
+    e.Expense.Date.Year == today.Year &&
+    e.Expense.Date.Month == today.Month)
+    .GroupBy(e => e.Expense.Date.Date) // group by day
+    .OrderBy(g => g.Key) // oldest → newest
+    .ToList()
+    ?? new List<IGrouping<DateTime, WorthIt.Models.ExpenseItemViewModel>>();
+
+    // Build labels and values for Chart.js
+    var labels = monthExpenses
+    .Select(g => g.Key.ToString("MMM dd")) // e.g. "Mar 01"
+    .ToList();
+
+    var values = monthExpenses
+    .Select(g => g.Sum(x => x.Expense.Amount))
+    .ToList();
+
+    var labelsJson = JsonSerializer.Serialize(labels);
+    var valuesJson = JsonSerializer.Serialize(values);
+}
+
+<div class="my-4">
+    <canvas id="expensesChart" height="180"></canvas>
+</div>
+
+<script>
+    (function () {
+        const ctx = document.getElementById('expensesChart');
+
+        const labels = @Html.Raw(@labelsJson);
+        const data = @Html.Raw(@valuesJson);
+
+        if (!ctx || !labels.length) {
+            return; // nothing to draw
+        }
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Spent',
+                    data: data,
+                    borderWidth: 0,
+                    borderRadius: 10,
+                    backgroundColor: '#FCD34D',
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: (ctx) => `$${ctx.parsed.y.toFixed(2)}`
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: { maxRotation: 0, autoSkip: true }
+                    },
+                    y: {
+                        grid: { color: '#f3f3f3' },
+                        ticks: {
+                            callback: (value) => '$' + value
+                        }
+                    }
+                }
+            }
+        });
+    })();
+</script>
