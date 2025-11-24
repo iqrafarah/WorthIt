@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using WorthIt.Data;
@@ -27,23 +28,46 @@ namespace WorthIt.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddExpense(decimal amount, int categoryId)
+        public IActionResult AddExpense(string amount, int categoryId)
         {
-            if (amount <= 0)
+            // normalize: allow both "1,11" and "1.11"
+            if (string.IsNullOrWhiteSpace(amount))
+            {
+                ModelState.AddModelError("", "Amount is required.");
+            }
+
+            amount = amount?.Trim().Replace(',', '.');
+
+            if (
+                !decimal.TryParse(
+                    amount,
+                    NumberStyles.Number,
+                    CultureInfo.InvariantCulture,
+                    out var parsedAmount
+                )
+            )
+            {
+                ModelState.AddModelError("", "Amount is not a valid number.");
+            }
+
+            if (parsedAmount <= 0)
             {
                 ModelState.AddModelError("", "Amount must be greater than zero.");
-                ViewData["HideHeader"] = true;
+            }
 
+            if (!ModelState.IsValid)
+            {
+                ViewData["HideHeader"] = true;
                 var categories = _context.Categories.ToList();
                 return View(categories);
             }
 
             var expense = new Expense
             {
-                Amount = amount,
+                Amount = parsedAmount,
                 Date = DateTime.Now,
                 CategoryId = categoryId,
-                UserId = 1,
+                UserId = 1, // temp hard-coded user
             };
 
             _context.Expenses.Add(expense);

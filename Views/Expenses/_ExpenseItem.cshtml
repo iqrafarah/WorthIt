@@ -12,7 +12,7 @@
                     @(Model.Category != null ? Model.Category.CategoryName : "Unknown")
                 </span>
                 <span class="expense-date text-start">
-                    @(Model.Expense != null ? $"${Model.Expense.Amount:0}" : "")
+                    @(Model.Expense != null ? string.Format("${0:0.00}", Model.Expense.Amount) : "")
                 </span>
             </div>
         </div>
@@ -31,7 +31,16 @@
                     else
                     {
                         var minutes = hours * 60;
-                        timeText = $"{minutes:0} min";
+
+                        if (minutes >= 1)
+                        {
+                            timeText = $"{minutes:0} min";
+                        }
+                        else
+                        {
+                            var seconds = minutes * 60;
+                            timeText = $"{seconds:0} sec";
+                        }
                     }
                 }
             }

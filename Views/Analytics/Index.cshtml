@@ -8,7 +8,7 @@
 
     <div class="expenses-summary">
         <h1 class="display-4 price-title price my-3">
-            $100
+            @(Model.Sum(e => e.Expense?.Amount ?? 0m).ToString("C"))
         </h1>
         <span class="text-foreground-color"> Total Spent this month</span>
     </div>
@@ -19,8 +19,8 @@
 
         @{
             var groupedByCategory = Model
-                .GroupBy(e => new { e.Category.CategoryName, e.Category.CategoryIcon })
-                .ToList();
+            .GroupBy(e => new { e.Category.CategoryName, e.Category.CategoryIcon })
+            .ToList();
         }
 
         <section class="expenses-list">
@@ -35,17 +35,17 @@
                 string timeText = "";
 
                 var anyWithUser = group.FirstOrDefault(x =>
-                    x.User != null &&
-                    x.User.HourlyWage > 0 &&
-                    x.Expense != null);
+                x.User != null &&
+                x.User.HourlyWage > 0 &&
+                x.Expense != null);
 
                 if (anyWithUser != null)
                 {
                     var hourly = anyWithUser.User.HourlyWage;
 
                     var totalAmount = group
-                        .Where(x => x.Expense != null)
-                        .Sum(x => x.Expense.Amount);
+                    .Where(x => x.Expense != null)
+                    .Sum(x => x.Expense.Amount);
 
                     decimal hours = totalAmount / hourly;
 
@@ -64,7 +64,8 @@
                     <div class="expense-item d-flex justify-content-between align-items-center my-3">
 
                         <div class="d-flex align-items-center gap-3">
-                            <div class="expense-icon bg-primary d-flex flex-column align-items-center text-black rounded-circle">
+                            <div
+                                class="expense-icon bg-primary d-flex flex-column align-items-center text-black rounded-circle">
                                 @categoryIcon
                             </div>
 
