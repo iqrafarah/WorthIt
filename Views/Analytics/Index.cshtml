@@ -1,7 +1,9 @@
+@using System.Globalization
 @{
     ViewData["Title"] = "Summary";
 }
 
+@using System.Globalization
 @model List<WorthIt.Models.ExpenseItemViewModel>
 
 @{
@@ -9,42 +11,43 @@
 
     // All expenses for THIS month
     var monthExpenses = Model
-        .Where(e => e.Expense != null &&
-                    e.Expense.Date.Year == today.Year &&
-                    e.Expense.Date.Month == today.Month)
-        .ToList();
+    .Where(e => e.Expense != null &&
+    e.Expense.Date.Year == today.Year &&
+    e.Expense.Date.Month == today.Month)
+    .ToList();
 
     // Total spent this month
     var totalSpentThisMonth = monthExpenses.Sum(e => e.Expense.Amount);
 
     // Group by category for the list + “Most Entry”
     var groupedByCategory = monthExpenses
-        .Where(e => e.Category != null)
-        .GroupBy(e => new { e.Category.CategoryName, e.Category.CategoryIcon })
-        .ToList();
+    .Where(e => e.Category != null)
+    .GroupBy(e => new { e.Category.CategoryName, e.Category.CategoryIcon })
+    .ToList();
 
     // Highest spent DAY this month
     var highestDay = monthExpenses
-        .GroupBy(e => e.Expense.Date.Date)
-        .Select(g => new
-        {
-            Date = g.Key,
-            Total = g.Sum(x => x.Expense.Amount)
-        })
-        .OrderByDescending(x => x.Total)
-        .FirstOrDefault();
+    .GroupBy(e => e.Expense.Date.Date)
+    .Select(g => new
+    {
+        Date = g.Key,
+        Total = g.Sum(x => x.Expense.Amount)
+    })
+    .OrderByDescending(x => x.Total)
+    .FirstOrDefault();
 
-    // Category with MOST entries this month
+    // Category with MOST entries this month (tie-breaker: higher total)
     var mostEntryCategory = groupedByCategory
-        .Select(g => new
-        {
-            g.Key.CategoryName,
-            g.Key.CategoryIcon,
-            Count = g.Count(),
-            Total = g.Sum(x => x.Expense.Amount)
-        })
-        .OrderByDescending(x => x.Count)
-        .FirstOrDefault();
+    .Select(g => new
+    {
+        g.Key.CategoryName,
+        g.Key.CategoryIcon,
+        Count = g.Count(),
+        Total = g.Sum(x => x.Expense != null ? x.Expense.Amount : 0m)
+    })
+    .OrderByDescending(x => x.Count)
+    .ThenByDescending(x => x.Total)
+    .FirstOrDefault();
 }
 
 <div class="py-4 analytics-summary">
@@ -69,10 +72,10 @@
                     <div
                         class="expense-icon bg-primary d-flex flex-column align-items-center gap-y-2 text-black rounded-circle">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="20"
-                             height="20" class="size-5">
+                            height="20" class="size-5">
                             <path fill-rule="evenodd"
-                                  d="M12.577 4.878a.75.75 0 0 1 .919-.53l4.78 1.281a.75.75 0 0 1 .531.919l-1.281 4.78a.75.75 0 0 1-1.449-.387l.81-3.022a19.407 19.407 0 0 0-5.594 5.203.75.75 0 0 1-1.139.093L7 10.06l-4.72 4.72a.75.75 0 0 1-1.06-1.061l5.25-5.25a.75.75 0 0 1 1.06 0l3.074 3.073a20.923 20.923 0 0 1 5.545-4.931l-3.042-.815a.75.75 0 0 1-.53-.919Z"
-                                  clip-rule="evenodd" />
+                                d="M12.577 4.878a.75.75 0 0 1 .919-.53l4.78 1.281a.75.75 0 0 1 .531.919l-1.281 4.78a.75.75 0 0 1-1.449-.387l.81-3.022a19.407 19.407 0 0 0-5.594 5.203.75.75 0 0 1-1.139.093L7 10.06l-4.72 4.72a.75.75 0 0 1-1.06-1.061l5.25-5.25a.75.75 0 0 1 1.06 0l3.074 3.073a20.923 20.923 0 0 1 5.545-4.931l-3.042-.815a.75.75 0 0 1-.53-.919Z"
+                                clip-rule="evenodd" />
                         </svg>
                     </div>
                     <div class="d-flex flex-column">
@@ -95,25 +98,18 @@
                     @(highestDay != null ? highestDay.Total.ToString("C") : "-")
                 </span>
             </div>
-
             @* MOST ENTRY CARD (dynamic) *@
-            <div class="analytics-item rounded-3 d-flex justify-content-between align-items-center my-3">
+            <div class="mb-4 analytics-item rounded-3 d-flex justify-content-between align-items-center my-3">
                 <div class="d-flex align-items-center gap-3">
                     <div
                         class="expense-icon bg-primary d-flex flex-column align-items-center gap-y-2 text-black rounded-circle">
-                        @if (mostEntryCategory != null)
-                        {
-                            @mostEntryCategory.CategoryIcon
-                        }
-                        else
-                        {
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                 stroke-width="1.5" stroke="#000" width="20" height="20" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" />
-                            </svg>
-                        }
+
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="#000" width="20" height="20" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" />
+                        </svg>
                     </div>
                     <div class="d-flex flex-column">
                         <span class="expense-name text-black text-500 text-start">
@@ -122,7 +118,9 @@
                         <span class="expense-date text-start small">
                             @if (mostEntryCategory != null)
                             {
-                                @($"{mostEntryCategory.Count} on {mostEntryCategory.CategoryIcon} {mostEntryCategory.CategoryName}")
+                                @($"{mostEntryCategory.Count} on ")
+                                @Html.Raw(mostEntryCategory.CategoryIcon)
+                                @($" {mostEntryCategory.CategoryName}")
                             }
                             else
                             {
@@ -146,28 +144,30 @@
                 string timeText = "";
 
                 var anyWithUser = group.FirstOrDefault(x =>
-                    x.User != null &&
-                    x.User.HourlyWage > 0 &&
-                    x.Expense != null);
+                x.User != null &&
+                x.User.HourlyWage > 0 &&
+                x.Expense != null);
 
                 if (anyWithUser != null)
                 {
                     var hourly = anyWithUser.User.HourlyWage;
 
                     var totalAmount = group
-                        .Where(x => x.Expense != null)
-                        .Sum(x => x.Expense.Amount);
+                    .Where(x => x.Expense != null)
+                    .Sum(x => x.Expense.Amount);
 
                     decimal hours = totalAmount / hourly;
 
                     if (hours >= 1)
                     {
-                        timeText = $"{hours:0.#}h";
+                        var hoursString = hours.ToString("0.#", CultureInfo.InvariantCulture);
+                        timeText = $"{hoursString}uur";
                     }
                     else
                     {
                         var minutes = hours * 60;
-                        timeText = $"{minutes:0} min";
+                        var minutesString = minutes.ToString("0.#", CultureInfo.InvariantCulture);
+                        timeText = $"{minutesString} min";
                     }
                 }
 

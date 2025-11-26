@@ -1,0 +1,39 @@
+using System.Globalization;
+using Xunit;
+
+public class IndexViewLogicTests
+{
+    [Fact]
+    public void CalculatesTimeTextForCategory()
+    {
+        // Arrange
+        double timeSpent = 7.5;
+        string expected = "7.5h";
+
+        // Act
+        string actual = timeSpent.ToString("0.0", CultureInfo.InvariantCulture) + "h";
+
+        // Assert
+        Assert.Equal(expected, actual);
+    }
+
+    // Other tests...
+
+    public class YourClass
+    {
+        public required string CategoryName { get; set; }
+        public required string CategoryIcon { get; set; }
+        public required string Expense { get; set; }
+        public required string Category { get; set; }
+        public required string User { get; set; }
+
+        public YourClass(string categoryName, string categoryIcon, string expense, string category, string user)
+        {
+            CategoryName = categoryName;
+            CategoryIcon = categoryIcon;
+            Expense = expense;
+            Category = category;
+            User = user;
+        }
+    }
+}
